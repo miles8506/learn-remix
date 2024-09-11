@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+.auth-btn {
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: var(--primary-color);
+  background-color: var(--background-primary-color);
+  text-decoration: none;
+}
+
+.auth-btn:hover {
+  opacity: .8;
+}
