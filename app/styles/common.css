@@ -26,3 +26,7 @@ dialog {
   z-index: 1;
   border-radius: 20px;
 }
+
+li {
+  list-style: none;
+}

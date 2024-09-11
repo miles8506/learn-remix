@@ -1,5 +1,10 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
+import ToDoItem from "~/components/list/Item";
+
+import type { ITodoItem } from "~/types/TodoItem";
+
+import styled from './style.module.css'
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,10 +13,29 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+const FAKE_DATA: ITodoItem[] = [
+  {
+    id: '',
+    title: 'Test',
+    createTime: new Date(),
+    description: '123',
+    isDone: false
+  }
+]
+
 export default function Index() {
   return (
     <>
-      <div>main</div>
+      <ul className={styled.list}>
+        {
+          FAKE_DATA.map(item => (
+            <ToDoItem
+              key={item.id}
+              {...item}
+            />
+          ))
+        }
+      </ul>
       <Outlet />
     </>
   );

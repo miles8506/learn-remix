@@ -1,6 +1,6 @@
 import { Outlet } from "@remix-run/react";
-import MainHeader from "~/components/MainHeader/index";
-import NavBar from "~/components/NavBar";
+import MainHeader from "~/components/common/MainHeader/index";
+import NavBar from "~/components/common/NavBar";
 
 import styled from './style.module.css'
 
