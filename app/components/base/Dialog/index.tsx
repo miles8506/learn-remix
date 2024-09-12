@@ -5,7 +5,7 @@ import styled from './style/style.module.scss'
 interface IPropsType {
   children: React.ReactNode
   isOpen: boolean
-  handleClick: React.Dispatch<React.SetStateAction<boolean>>
+  handleClick: () => void
   title?: string
   clickBackdrop?: boolean
   backdrop?: boolean
@@ -20,7 +20,7 @@ export default function BaseDialog(props: IPropsType) {
         (isOpen && backdrop) && <div
           aria-hidden
           className={styled.backdrop}
-          onClick={() => !!clickBackdrop && handleClick(prev => !prev)}
+          onClick={() => !!clickBackdrop && handleClick()}
         />
       }
       <dialog
@@ -31,7 +31,7 @@ export default function BaseDialog(props: IPropsType) {
           {title && <h3 className={styled['add-title']}>{title}</h3>}
           <div
             className={styled['close-icon']}
-            onClick={() => handleClick(prev => !prev)}
+            onClick={() => handleClick()}
             aria-hidden
           />
         </div>
