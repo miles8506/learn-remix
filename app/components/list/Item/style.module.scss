@@ -1,0 +1,40 @@
+.todo-item {
+  position: relative;
+  display: flex;
+  gap: 0 15px;
+  padding: 15px 25px;
+  background-color: var(--background-primary-color);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all .3s;
+  box-shadow: 1px 3px 5px rgba(122, 122, 122, 0.5);
+
+  &:hover {
+    opacity: .8;  
+  }
+
+  .left {
+    padding: 10px 0 0;
+  }
+  
+  .right {
+    color: var(--second-color);
+  }
+  
+  .checkbox {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .title {
+    margin: 0 0 8px;
+    font-size: 18px;
+  }
+  
+  .time {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    font-size: 12px;
+  }  
+}

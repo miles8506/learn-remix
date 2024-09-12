@@ -6,35 +6,31 @@
   background-color: var(--background-primary-color);
   border-radius: 15px;
   cursor: pointer;
-  transition: all .3s;
+  transition: all 0.3s;
   box-shadow: 1px 3px 5px rgba(122, 122, 122, 0.5);
 }
-
 .todo-item:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
-
-.left {
+.todo-item .left {
   padding: 10px 0 0;
 }
-
-.right {
+.todo-item .right {
   color: var(--second-color);
 }
-
-.checkbox {
+.todo-item .checkbox {
   width: 15px;
   height: 15px;
 }
-
-.title {
+.todo-item .title {
   margin: 0 0 8px;
   font-size: 18px;
 }
-
-.time {
+.todo-item .time {
   position: absolute;
   bottom: 5px;
   right: 15px;
   font-size: 12px;
 }
+
+/*# sourceMappingURL=style.module.css.map */

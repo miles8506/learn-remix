@@ -10,9 +10,8 @@
   color: var(--primary-color);
   background-color: var(--background-primary-color);
   text-decoration: none;
-}
-.auth-btn:hover {
-  opacity: 0.8;
-}
 
-/*# sourceMappingURL=style.module.css.map */
+  &:hover {
+    opacity: .8;
+  }
+}

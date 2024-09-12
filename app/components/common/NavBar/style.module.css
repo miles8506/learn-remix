@@ -4,7 +4,6 @@
   align-content: center;
   gap: 0 20px;
 }
-
 .nav-btn {
   position: relative;
   width: 60px;
@@ -14,13 +13,11 @@
   color: var(--primary-color);
   text-decoration: none;
 }
-
 .nav-btn:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
-
-.active::after {
-  content: '';
+.nav .active::after {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -28,3 +25,5 @@
   height: 2px;
   background-color: var(--background-third-color);
 }
+
+/*# sourceMappingURL=style.module.css.map */
