@@ -1,14 +1,12 @@
-.add-title {
+.dialog .add-title {
   margin: 0 0 10px;
   color: var(--primary-color);
 }
-
-.bottom {
+.dialog .bottom {
   display: flex;
   justify-content: flex-end;
 }
-
-.button {
+.dialog .button {
   padding: 5px 12px;
   background-color: var(--background-third-color);
   color: var(--white-color);

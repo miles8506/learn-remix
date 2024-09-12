@@ -1,6 +1,6 @@
 import type { ITodoItem } from '~/types/TodoItem'
 
-import styled from './style.module.css'
+import styled from './style/style.module.scss'
 
 export default function ToDoItem(props: ITodoItem) {
   const { title, isDone, description, createTime } = props

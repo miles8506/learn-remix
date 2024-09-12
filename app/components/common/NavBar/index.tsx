@@ -1,7 +1,7 @@
 import { NavLink } from '@remix-run/react'
 import clsx from 'clsx'
 
-import styled from './style.module.css'
+import styled from './style/style.module.scss'
 
 export default function NavBar() {
   return (

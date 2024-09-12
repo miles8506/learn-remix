@@ -1,0 +1,18 @@
+.dialog {
+  .add-title {
+    margin: 0 0 10px;
+    color: var(--primary-color);
+  }
+  
+  .bottom {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .button {
+    padding: 5px 12px;
+    background-color: var(--background-third-color);
+    color: var(--white-color);
+    border-radius: 10px;
+  }
+}

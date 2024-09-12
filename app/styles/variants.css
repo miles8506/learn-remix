@@ -8,4 +8,6 @@
   --background-primary-color: #E4D3D3;
   --background-second-color: #E7E7F6;
   --background-third-color: #af34af;
+  
+  --dialog-backdrop: rgba(24, 24, 24, 0.6);
 }

@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 
-import styled from './style.module.css'
+import styled from './style/style.module.scss'
 
 export default function MainHeader() {
   return (

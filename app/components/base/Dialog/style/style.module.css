@@ -1,0 +1,42 @@
+.base-dialog {
+  position: fixed;
+  border: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 200px;
+  padding: 20px;
+  z-index: 2;
+  border-radius: 20px;
+}
+.base-dialog .top {
+  position: relative;
+}
+.base-dialog .close-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  padding: 2px;
+  cursor: pointer;
+}
+.base-dialog .close-icon::after {
+  content: "X";
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--dialog-backdrop);
+  z-index: 1;
+}
+
+/*# sourceMappingURL=style.module.css.map */

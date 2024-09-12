@@ -4,7 +4,7 @@ import ToDoItem from "~/components/list/Item";
 
 import type { ITodoItem } from "~/types/TodoItem";
 
-import styled from './style.module.css'
+import styled from './style/style.module.scss'
 
 export const meta: MetaFunction = () => {
   return [
