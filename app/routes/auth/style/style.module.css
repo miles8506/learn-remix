@@ -1,0 +1,27 @@
+.auth {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 35px 50px;
+  background-color: var(--background-primary-color);
+  min-width: 400px;
+  border-radius: 20px;
+}
+.auth > h4 {
+  margin-bottom: 15px;
+}
+.auth .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px 0;
+}
+.auth .bottom {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.module.css.map */

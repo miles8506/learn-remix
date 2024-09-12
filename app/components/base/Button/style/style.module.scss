@@ -1,0 +1,13 @@
+.base-button {
+  background-color: var(--background-third-color);
+  color: var(--white-color);
+  border-radius: 10px;
+
+  &.primary {
+    padding: 5px 12px;
+  }
+
+  &.large {
+    padding: 10px 25px;
+  }
+}

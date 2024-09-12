@@ -2,6 +2,7 @@ import { Form, useNavigate } from '@remix-run/react'
 import styled from './style/style.module.scss'
 import BaseDialog from '~/components/base/Dialog'
 import { useCallback, useState } from 'react'
+import BaseButton from '~/components/base/Button'
 
 export default function AddPage() {
   const [isOpen, setIsOpen] = useState(true)
@@ -20,7 +21,9 @@ export default function AddPage() {
     >
       <Form method='post'>
         <div className={styled.bottom}>
-          <button className={styled.button}>click</button>
+          <BaseButton>
+            Click
+          </BaseButton>
         </div>
       </Form>
     </BaseDialog>
