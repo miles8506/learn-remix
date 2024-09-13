@@ -1,32 +1,18 @@
-import { Form, useNavigate } from "@remix-run/react";
-import { useCallback, useState } from "react";
-import BaseButton from "~/components/base/Button";
-import BaseDialog from "~/components/base/Dialog"
+import TodoForm from "~/components/list/Form";
+import { FormType } from "~/enums";
 
 export default function TodoDetail() {
-  const navigate = useNavigate()
-  const [isOpen, setIsOpen] = useState(true)
-  
-  const handleClick = useCallback(() => {
-    navigate('..')
-    setIsOpen(prev => !prev)
-  }, [navigate])
-
   return (
-    <BaseDialog
-      title=""
-      isOpen={isOpen}
-      handleClick={handleClick}
-    >
-      <Form method="post">
-        <BaseButton>
-          click
-        </BaseButton>
-      </Form>
-    </BaseDialog>
+    <TodoForm mode={FormType.MODIFY} />
   )
 }
 
 export const loader = () => {
+  return null
+}
+
+export const action = () => {
+  console.log('action')
+
   return null
 }

@@ -5,11 +5,16 @@
   gap: 0 10px;
 }
 .base-input .label {
-  width: 80px;
+  width: 120px;
   color: var(--primary-color);
 }
+.base-input .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
 .base-input .input {
-  flex: 1;
   width: 100%;
   height: 30px;
   padding: 2px 5px;

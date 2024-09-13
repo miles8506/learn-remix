@@ -2,7 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 import ToDoItem from "~/components/list/Item";
 
-import type { ITodoItem } from "~/types/TodoItem";
+import type { ITodoItem } from "~/types";
 
 import styled from './style/style.module.scss'
 
@@ -15,9 +15,9 @@ export const meta: MetaFunction = () => {
 
 const FAKE_DATA: ITodoItem[] = [
   {
-    id: '',
+    id: '999',
     title: 'Test',
-    createTime: new Date(),
+    time: new Date(),
     description: '123',
     isDone: false
   }

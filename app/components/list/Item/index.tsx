@@ -1,17 +1,30 @@
-import type { ITodoItem } from '~/types/TodoItem'
+import type { ITodoItem } from '~/types'
 
 import styled from './style/style.module.scss'
+import { useNavigate } from '@remix-run/react'
+import BaseInput from '~/components/base/Input'
+import { useCallback } from 'react'
 
 export default function ToDoItem(props: ITodoItem) {
-  const { title, isDone, description, createTime } = props
+  const { title, isDone, description, time, id } = props
+  
+  const navigate = useNavigate()
+
+  const goToId = useCallback(() => {
+    navigate(`/list/${id}`)
+  }, [id, navigate])
 
   return (
-    <li className={styled['todo-item']}>
+    <li
+      onClick={goToId}
+      className={styled['todo-item']}
+      aria-hidden
+    >
       <div className={styled.left}>
-        <input
-          type="checkbox"
+        <BaseInput
+          type='checkbox'
           defaultChecked={isDone}
-          className={styled.checkbox}
+          style={{ width: '15px', height: '15px' }}
         />
       </div>
       <div className={styled.right}>
@@ -19,7 +32,7 @@ export default function ToDoItem(props: ITodoItem) {
         <div>
           {description}
         </div>
-        <span className={styled.time}>{createTime.getTime()}</span>
+        <span className={styled.time}>{time.getTime()}</span>
       </div>
     </li>
   )

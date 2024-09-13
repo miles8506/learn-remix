@@ -12,7 +12,7 @@ interface IPropsType {
 }
 
 export default function BaseDialog(props: IPropsType) {
-  const { children, isOpen, title, handleClick, clickBackdrop, backdrop = true } = props
+  const { children, isOpen, title, handleClick, clickBackdrop = true, backdrop = true } = props
 
   return (
     <>

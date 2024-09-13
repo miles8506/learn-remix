@@ -18,10 +18,6 @@
 .todo-item .right {
   color: var(--second-color);
 }
-.todo-item .checkbox {
-  width: 15px;
-  height: 15px;
-}
 .todo-item .title {
   margin: 0 0 8px;
   font-size: 18px;
