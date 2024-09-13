@@ -1,4 +1,4 @@
-import { Form, useNavigate, useNavigation } from "@remix-run/react";
+import { Form, useActionData, useNavigate, useNavigation, useParams } from "@remix-run/react";
 import { useCallback, useMemo, useState } from "react";
 import BaseButton from "~/components/base/Button";
 import BaseDialog from "~/components/base/Dialog"
@@ -11,11 +11,14 @@ import { TodoRequest } from "~/types";
 interface IPropsType {
   mode: FormType
   payload?: TodoRequest
-  id?: string
 }
 
 export default function TodoForm(props: IPropsType) {
-  const { mode, payload, id } = props
+  const { mode, payload } = props
+  const params = useParams()
+  const id = params.id
+
+  const actionError = useActionData() as { message: string }
 
   const defaultValues = payload
     ? payload
@@ -39,14 +42,14 @@ export default function TodoForm(props: IPropsType) {
 
   return (
     <BaseDialog
-      title={FormType.ADD ? 'ADD TODO' : id}
+      title={mode === FormType.ADD ? 'ADD TODO' : id}
       isOpen={isOpen}
       handleClick={handleClick}
     >
       <Form
         method="post"
         className={styled.form}
-        action={mode === FormType.ADD ? '/list/add' : '/list/$id'}
+        action={mode === FormType.ADD ? '/list/add' : `/list/${id}`}
       >
         <BaseInput
           type="text"
@@ -62,11 +65,10 @@ export default function TodoForm(props: IPropsType) {
           labelText="Time"
           htmlFor="time"
           getter={15}
-          defaultValue={defaultValues.time ? new Date(defaultValues.time).getUTCDate() : new Date().getUTCDate()}
+          defaultValue={defaultValues.time === '' ? '' : defaultValues.time.slice(0, 10)}
         />
         <BaseInput
           type="text"
-          required
           labelText="Description"
           htmlFor="description"
           getter={15}
@@ -74,12 +76,18 @@ export default function TodoForm(props: IPropsType) {
         />
         <BaseInput
           type="checkbox"
-          required
           labelText="Done"
           htmlFor="done"
           style={{ width: '20px', height: '20px' }}
           defaultChecked={defaultValues.isDone}
         />
+        <ul className={styled.errors}>
+          {
+            actionError && Object.values(actionError).map(error => (
+              <li key={error}>{error}</li>
+            ))
+          }
+        </ul>
         <div className={styled.bottom}>
           <BaseButton variant="large">
             { isSubmitting ? 'Submitting...' : 'Submit' }

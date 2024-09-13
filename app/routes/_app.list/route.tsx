@@ -13,11 +13,11 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-const FAKE_DATA: ITodoItem[] = [
+export const FAKE_DATA: ITodoItem[] = [
   {
     id: '999',
     title: 'Test',
-    time: new Date(),
+    time: new Date().toISOString(),
     description: '123',
     isDone: false
   }

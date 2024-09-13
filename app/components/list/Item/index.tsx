@@ -32,7 +32,7 @@ export default function ToDoItem(props: ITodoItem) {
         <div>
           {description}
         </div>
-        <span className={styled.time}>{time.getTime()}</span>
+        <span className={styled.time}>{time.slice(0, 10)}</span>
       </div>
     </li>
   )

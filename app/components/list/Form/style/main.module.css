@@ -2,8 +2,16 @@
   padding: 20px 0 10px;
 }
 .form .bottom {
-  margin: 20px 0 0;
+  margin: 15px 0 0;
   text-align: right;
+}
+.form .errors {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  color: var(--dangerous-color);
+  margin-top: 15px;
 }
 
 /*# sourceMappingURL=main.module.css.map */

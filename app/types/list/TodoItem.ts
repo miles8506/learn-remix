@@ -1,4 +1,4 @@
-export interface ITodoItem<D = Date> {
+export interface ITodoItem<D = string> {
   id: string
   title: string
   time: D

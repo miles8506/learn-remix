@@ -19,7 +19,6 @@ export default function BaseInput(props: IPropsType & InputHTMLAttributes<unknow
   } = props
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log('click');
     e.stopPropagation()
   }, [])
   
