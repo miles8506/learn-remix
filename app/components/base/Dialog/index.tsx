@@ -20,7 +20,7 @@ export default function BaseDialog(props: IPropsType) {
         (isOpen && backdrop) && <div
           aria-hidden
           className={styled.backdrop}
-          onClick={() => !!clickBackdrop && handleClick()}
+          onClick={() => clickBackdrop && handleClick()}
         />
       }
       <dialog

@@ -14,7 +14,7 @@ export default function BaseInput(props: IPropsType & InputHTMLAttributes<unknow
   return (
     <div className={styled['base-input']}>
       {
-        htmlFor && 
+        htmlFor &&
         (
           <label
             htmlFor={htmlFor}

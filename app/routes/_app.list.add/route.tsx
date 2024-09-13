@@ -5,8 +5,10 @@ import { useCallback, useState } from 'react'
 import BaseButton from '~/components/base/Button'
 
 export default function AddPage() {
-  const [isOpen, setIsOpen] = useState(true)
   const navigate = useNavigate()
+
+  const [isOpen, setIsOpen] = useState(true)
+
   const handleClick = useCallback(() => {
     navigate('..')
     setIsOpen(prev => !prev)
@@ -17,7 +19,6 @@ export default function AddPage() {
       title='ADD TODO'
       isOpen={isOpen}
       handleClick={handleClick}
-      clickBackdrop
     >
       <Form method='post'>
         <div className={styled.bottom}>
