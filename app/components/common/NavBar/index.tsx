@@ -23,6 +23,7 @@ export default function NavBar() {
             ? clsx([styled.active, styled['nav-btn']])
             : styled['nav-btn']
         }
+        reloadDocument
       >
         Data
       </NavLink>

@@ -54,6 +54,7 @@ export default function TodoForm(props: IPropsType) {
         <BaseInput
           type="text"
           required
+          name="title"
           labelText="Title"
           htmlFor="title"
           getter={15}
@@ -62,6 +63,7 @@ export default function TodoForm(props: IPropsType) {
         <BaseInput
           type="date"
           required
+          name="time"
           labelText="Time"
           htmlFor="time"
           getter={15}
@@ -71,6 +73,7 @@ export default function TodoForm(props: IPropsType) {
           type="text"
           labelText="Description"
           htmlFor="description"
+          name="description"
           getter={15}
           defaultValue={defaultValues.description}
         />
@@ -78,6 +81,7 @@ export default function TodoForm(props: IPropsType) {
           type="checkbox"
           labelText="Done"
           htmlFor="done"
+          name="done"
           style={{ width: '20px', height: '20px' }}
           defaultChecked={defaultValues.isDone}
         />

@@ -6,7 +6,7 @@ const validationLength = (v: string, max: number) => {
   return true
 }
 
-export function validationAddForm(payload: TodoRequest) {
+export function validationForm(payload: TodoRequest) {
   const { title, time, description } = payload
   const error = {} as { title: string, description: string, time: string }
 

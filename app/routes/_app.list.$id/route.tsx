@@ -4,7 +4,7 @@ import { FormType } from "~/enums";
 import { FAKE_DATA } from "../_app.list/route";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { TodoRequest } from "~/types";
-import { validationAddForm } from "~/.server/validationTodoForm";
+import { validationForm } from "~/.server/validationTodoForm";
 
 export default function TodoDetail() {
   return (
@@ -24,7 +24,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const payload = Object.fromEntries(formData) as unknown as TodoRequest
 
   try {
-    validationAddForm(payload)    
+    validationForm(payload)    
   } catch (error) {
     return error
   }
