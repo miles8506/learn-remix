@@ -1,4 +1,6 @@
-import { ActionFunctionArgs } from '@remix-run/node'
+import { Prisma } from '@prisma/client'
+import { ActionFunctionArgs, redirect } from '@remix-run/node'
+import { addTodo } from '~/.server/list'
 import { validationForm } from '~/.server/validationTodoForm'
 import TodoForm from '~/components/list/Form'
 import { FormType } from '~/enums'
@@ -16,9 +18,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   try {
     validationForm(data)
+    await addTodo({ ...data, done: !!data.done })
   } catch (error) {
-    return error
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      return error
+    }
   }
-
-  return null
+  
+  return redirect('..')
 }

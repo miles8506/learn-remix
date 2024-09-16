@@ -26,7 +26,7 @@ export default function TodoForm(props: IPropsType) {
       title: '',
       time: '',
       description: '',
-      isDone: false
+      done: false
     }
 
   const navigation = useNavigation()
@@ -83,7 +83,7 @@ export default function TodoForm(props: IPropsType) {
           htmlFor="done"
           name="done"
           style={{ width: '20px', height: '20px' }}
-          defaultChecked={defaultValues.isDone}
+          defaultChecked={defaultValues.done}
         />
         <ul className={styled.errors}>
           {

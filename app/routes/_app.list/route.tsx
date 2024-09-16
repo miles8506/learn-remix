@@ -19,7 +19,7 @@ export const FAKE_DATA: ITodoItem[] = [
     title: 'Test',
     time: new Date().toISOString(),
     description: '123',
-    isDone: false
+    done: false
   }
 ]
 

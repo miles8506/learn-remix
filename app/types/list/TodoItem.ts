@@ -3,7 +3,7 @@ export interface ITodoItem<D = string> {
   title: string
   time: D
   description: string
-  isDone: boolean
+  done: boolean
 }
 
 export type TodoRequest = Omit<ITodoItem, 'id'>

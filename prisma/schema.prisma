@@ -12,3 +12,11 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model TodoItem {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  time        DateTime
+  description String
+  done        Boolean
+}

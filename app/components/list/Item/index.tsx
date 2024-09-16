@@ -6,7 +6,7 @@ import BaseInput from '~/components/base/Input'
 import { useCallback } from 'react'
 
 export default function ToDoItem(props: ITodoItem) {
-  const { title, isDone, description, time, id } = props
+  const { title, done, description, time, id } = props
   
   const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ export default function ToDoItem(props: ITodoItem) {
       <div className={styled.left}>
         <BaseInput
           type='checkbox'
-          defaultChecked={isDone}
+          defaultChecked={done}
           style={{ width: '15px', height: '15px' }}
         />
       </div>

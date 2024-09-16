@@ -1,4 +1,4 @@
-import { Form, useActionData, useSearchParams } from "@remix-run/react";
+import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 
 import styled from './style/style.module.scss'
 import BaseInput from "~/components/base/Input";
@@ -44,6 +44,11 @@ export default function AuthPage() {
             ))
           }
         </ul>
+        <Link
+          to={`/auth?mode=${mode === AUTH_TYPE.LOGIN ? AUTH_TYPE.REGISTER : AUTH_TYPE.LOGIN}`}
+        >
+          {mode === AUTH_TYPE.LOGIN ? 'register account' : 'login account'}
+        </Link>
         <div className={styled.bottom}>
           <BaseButton variant="large">Login</BaseButton>
         </div>
@@ -56,11 +61,21 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData) as unknown as IAuthRequest
 
+  const mode = new URL(request.url).searchParams.get('mode') ?? AUTH_TYPE.LOGIN as AUTH_TYPE
+
   try {
     validationAuth(data)
   } catch (error) {
-    console.log(error);
     return error
+  }
+
+  switch (mode) {
+    case AUTH_TYPE.LOGIN:
+      break
+    case AUTH_TYPE.REGISTER:
+      break
+    default:
+      break
   }
 
   return null

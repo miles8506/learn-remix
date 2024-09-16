@@ -17,7 +17,5 @@ export function validationAuth(payload: IAuthRequest) {
     errors.password = 'password length error'
   }
 
-  console.log(Object.values(errors).length);
-
   if (Object.values(errors).length) throw errors
 }
