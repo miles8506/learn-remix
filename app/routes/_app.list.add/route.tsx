@@ -20,9 +20,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     validationForm(data)
     await addTodo({ ...data, done: !!data.done })
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      return error
-    }
+    return error
   }
   
   return redirect('..')

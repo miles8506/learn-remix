@@ -1,10 +1,11 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import ToDoItem from "~/components/list/Item";
 
 import type { ITodoItem } from "~/types";
 
 import styled from './style/style.module.scss'
+import { getList } from "~/.server/list";
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,24 +14,16 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const FAKE_DATA: ITodoItem[] = [
-  {
-    id: '999',
-    title: 'Test',
-    time: new Date().toISOString(),
-    description: '123',
-    done: false
-  }
-]
-
 export default function Index() {
+  const data = useLoaderData<typeof loader>()
+
   return (
     <>
       <ul className={styled.list}>
         {
-          FAKE_DATA.map(item => (
+          data?.map(item => (
             <ToDoItem
-              key={item.id}
+              key={`${item.id}_${item.done}`}
               {...item}
             />
           ))
@@ -39,4 +32,8 @@ export default function Index() {
       <Outlet />
     </>
   );
+}
+
+export const loader = async () => {
+  return await getList()
 }

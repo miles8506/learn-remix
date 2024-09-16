@@ -83,7 +83,7 @@ export default function TodoForm(props: IPropsType) {
           htmlFor="done"
           name="done"
           style={{ width: '20px', height: '20px' }}
-          defaultChecked={defaultValues.done}
+          defaultChecked={!!defaultValues.done}
         />
         <ul className={styled.errors}>
           {
