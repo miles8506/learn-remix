@@ -1,13 +1,15 @@
-import { redirect, useLoaderData } from "@remix-run/react";
+import { redirect, useMatches, useParams } from "@remix-run/react";
 import TodoForm from "~/components/list/Form";
 import { FormType } from "~/enums";
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { TodoRequest } from "~/types";
+import { ITodoItem, TodoRequest } from "~/types";
 import { validationForm } from "~/.server/validationTodoForm";
 import { findTodo, updateTodo } from "~/.server/list";
 
 export default function TodoDetail() {
-  const data = useLoaderData<typeof loader>()
+  const params = useParams()
+  const matches = useMatches()
+  const data = (matches.find(match => match.id === 'routes/_app.list')?.data as ITodoItem[]).find(item => item.id === params.id)
 
   if (!data) return null
 
@@ -17,12 +19,6 @@ export default function TodoDetail() {
       payload={data}
     />
   )
-}
-
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const id = params.id as string
-  
-  return await findTodo(id)
 }
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
