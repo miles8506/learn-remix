@@ -1,10 +1,12 @@
-import { Form, useSearchParams } from "@remix-run/react";
+import { Form, useActionData, useSearchParams } from "@remix-run/react";
 
 import styled from './style/style.module.scss'
 import BaseInput from "~/components/base/Input";
 import { ActionFunctionArgs } from "@remix-run/node";
 import BaseButton from "~/components/base/Button";
 import { useMemo } from "react";
+import { validationAuth } from "~/.server/validationAuth";
+import { IAuthRequest } from "~/types";
 
 enum AUTH_TYPE {
   LOGIN = 'login',
@@ -13,6 +15,7 @@ enum AUTH_TYPE {
 
 export default function AuthPage() {
   const [urlSearchParams] = useSearchParams()
+  const actionError = useActionData() as { account: string, password: string }
 
   const mode = useMemo(() => urlSearchParams.get('mode') ?? AUTH_TYPE.LOGIN, [urlSearchParams])
 
@@ -24,8 +27,8 @@ export default function AuthPage() {
           type="email"
           name="email"
           required
-          htmlFor="Account"
-          labelText="Account"
+          htmlFor="Email"
+          labelText="Email"
         />
         <BaseInput
           type="password"
@@ -34,6 +37,13 @@ export default function AuthPage() {
           htmlFor="Password"
           labelText="Password"
         />
+        <ul className={styled.errors}>
+          {
+            actionError && Object.values(actionError).map(error => (
+              <li key={error}>{error}</li>
+            ))
+          }
+        </ul>
         <div className={styled.bottom}>
           <BaseButton variant="large">Login</BaseButton>
         </div>
@@ -44,7 +54,14 @@ export default function AuthPage() {
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const data = Object.fromEntries(formData)
+  const data = Object.fromEntries(formData) as unknown as IAuthRequest
+
+  try {
+    validationAuth(data)
+  } catch (error) {
+    console.log(error);
+    return error
+  }
 
   return null
 }

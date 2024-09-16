@@ -1,10 +1,5 @@
 import { TodoRequest } from "~/types";
-
-const validationLength = (v: string, max: number) => {
-  const l = v.trim().length
-  if (!l || l > max) return false
-  return true
-}
+import { validationLength } from "~/utils";
 
 export function validationForm(payload: TodoRequest) {
   const { title, time, description } = payload

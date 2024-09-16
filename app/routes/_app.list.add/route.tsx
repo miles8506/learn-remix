@@ -13,7 +13,7 @@ export default function AddPage() {
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData) as unknown as TodoRequest
-  console.log(data);
+
   try {
     validationForm(data)
   } catch (error) {
