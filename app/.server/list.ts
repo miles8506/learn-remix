@@ -17,9 +17,12 @@ export async function addTodo(payload: TodoRequest) {
 
 export async function getList() {
   try {
-    return await prisma.todoItem.findMany({
+    const data = await prisma.todoItem.findMany({
       orderBy: { time: 'desc' }
     })
+    
+    data.sort((a, b) => a.done === b.done ? 0 : (a.done ? -1 : 1))
+    return data
   } catch (error) {
     throw error
   }
