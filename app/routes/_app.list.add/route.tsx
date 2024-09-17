@@ -1,6 +1,6 @@
-import { Prisma } from '@prisma/client'
 import { ActionFunctionArgs, redirect } from '@remix-run/node'
 import { addTodo } from '~/.server/list'
+import { getUserId } from '~/.server/session'
 import { validationForm } from '~/.server/validationTodoForm'
 import TodoForm from '~/components/list/Form'
 import { FormType } from '~/enums'
@@ -18,7 +18,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   try {
     validationForm(data)
-    await addTodo({ ...data, done: !!data.done })
+    const userId = await getUserId(request)
+    await addTodo({ ...data, done: !!data.done }, userId)
   } catch (error) {
     return error
   }

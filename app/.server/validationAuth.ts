@@ -1,7 +1,7 @@
 import { IAuthRequest } from "~/types";
 import { validationEmail, validationLength } from "~/utils";
 
-export function validationAuth(payload: IAuthRequest) {
+export async function validationAuth(payload: IAuthRequest) {
   const { email, password } = payload
   const errors = {} as { email?: string, password?: string }
 

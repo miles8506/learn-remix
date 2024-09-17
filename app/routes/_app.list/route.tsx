@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import ToDoItem from "~/components/list/Item";
 
@@ -6,6 +6,7 @@ import type { ITodoItem } from "~/types";
 
 import styled from './style/style.module.scss'
 import { getList } from "~/.server/list";
+import { getUserId } from "~/.server/session";
 
 export const meta: MetaFunction = () => {
   return [
@@ -34,6 +35,7 @@ export default function Index() {
   );
 }
 
-export const loader = async () => {
-  return await getList()
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const userId = await getUserId(request)
+  return await getList(userId)
 }

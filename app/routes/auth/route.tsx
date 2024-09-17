@@ -7,6 +7,7 @@ import BaseButton from "~/components/base/Button";
 import { useMemo } from "react";
 import { validationAuth } from "~/.server/validationAuth";
 import { IAuthRequest } from "~/types";
+import { registerEmail } from "~/.server/auth";
 
 enum AUTH_TYPE {
   LOGIN = 'login',
@@ -65,18 +66,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   try {
     validationAuth(data)
+    if (mode === AUTH_TYPE.LOGIN) {
+      
+    }
+
+    if (mode === AUTH_TYPE.REGISTER) {
+      return await registerEmail(data, request)
+    }
   } catch (error) {
     return error
   }
-
-  switch (mode) {
-    case AUTH_TYPE.LOGIN:
-      break
-    case AUTH_TYPE.REGISTER:
-      break
-    default:
-      break
-  }
-
-  return null
 }
