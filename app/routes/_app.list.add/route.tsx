@@ -1,6 +1,6 @@
-import { ActionFunctionArgs, redirect } from '@remix-run/node'
+import { ActionFunctionArgs, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { addTodo } from '~/.server/list'
-import { getUserId } from '~/.server/session'
+import { getUserId, sessionGuard } from '~/.server/session'
 import { validationForm } from '~/.server/validationTodoForm'
 import TodoForm from '~/components/list/Form'
 import { FormType } from '~/enums'
@@ -10,6 +10,12 @@ export default function AddPage() {
   return (
     <TodoForm mode={FormType.ADD} />
   )
+}
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await sessionGuard(request)
+
+  return null
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {

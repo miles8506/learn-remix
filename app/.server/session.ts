@@ -14,7 +14,7 @@ export const { getSession, commitSession, destroySession } = createCookieSession
   }
 })
 
-export const register = async (userId: string, request: Request) => {
+export const commit = async (userId: string, request: Request) => {
   const session = await getSession(request.headers.get('Cookie'))
   session.set(USER_ID, userId)
 
@@ -39,4 +39,9 @@ export const destroyUserId = async (request: Request) => {
   const session = await getSession(request.headers.get('Cookie'))
 
   return redirect('/auth', { headers: { 'Set-Cookie': await destroySession(session) } })
+}
+
+export const sessionGuard = async (request: Request, isAuth = false) => {
+  if (!(await hasUserId(request)) && !isAuth) throw redirect('/auth')
+  if (await hasUserId(request) && isAuth) throw redirect('/list')
 }

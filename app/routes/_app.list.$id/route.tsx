@@ -5,6 +5,7 @@ import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { ITodoItem, TodoRequest } from "~/types";
 import { validationForm } from "~/.server/validationTodoForm";
 import { findTodo, updateTodo } from "~/.server/list";
+import { sessionGuard } from "~/.server/session";
 
 export default function TodoDetail() {
   const params = useParams()
@@ -19,6 +20,12 @@ export default function TodoDetail() {
       payload={data}
     />
   )
+}
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await sessionGuard(request)
+
+  return null
 }
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {

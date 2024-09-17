@@ -23,5 +23,8 @@
   margin-top: 20px;
   text-align: center;
 }
+.auth .errors {
+  color: var(--dangerous-color);
+}
 
 /*# sourceMappingURL=style.module.css.map */

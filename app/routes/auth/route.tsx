@@ -2,12 +2,13 @@ import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 
 import styled from './style/style.module.scss'
 import BaseInput from "~/components/base/Input";
-import { ActionFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import BaseButton from "~/components/base/Button";
 import { useMemo } from "react";
 import { validationAuth } from "~/.server/validationAuth";
 import { IAuthRequest } from "~/types";
-import { registerEmail } from "~/.server/auth";
+import { login, registerEmail } from "~/.server/auth";
+import { sessionGuard } from "~/.server/session";
 
 enum AUTH_TYPE {
   LOGIN = 'login',
@@ -58,6 +59,10 @@ export default function AuthPage() {
   )
 }
 
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await sessionGuard(request, true)
+}
+
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData) as unknown as IAuthRequest
@@ -67,7 +72,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   try {
     validationAuth(data)
     if (mode === AUTH_TYPE.LOGIN) {
-      
+      return await login(data, request)
     }
 
     if (mode === AUTH_TYPE.REGISTER) {

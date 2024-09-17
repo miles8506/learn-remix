@@ -1,6 +1,6 @@
 import { IAuthRequest } from "~/types"
 import { prisma } from "./db"
-import { getSession, register, USER_ID } from "./session"
+import { commit } from "./session"
 import bcryptjs from 'bcryptjs'
 
 
@@ -25,8 +25,31 @@ export const registerEmail = async (payload: IAuthRequest, request: Request) => 
         password: hashPassword
       }
     })
-    return await register(id, request)
+    return await commit(id, request)
   } catch (error) {
     throw error
   }
+}
+
+export const login = async (payload: IAuthRequest, request: Request) => {
+  const { email, password } = payload
+  const errors = {} as {account: string, password: string}
+
+  const user = await prisma.user.findFirst({ where: { email } })
+
+  if (!user) {
+    errors.account = 'login error'
+    throw errors
+  } else {
+
+  }
+
+  const checkPassword = await compare(password, user.password)
+
+  if (!checkPassword) {
+    errors.password = 'password error'
+    throw errors
+  }
+
+  return commit(user.id, request)
 }
